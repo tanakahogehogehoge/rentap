@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FACEBOOK</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <h2>facebook</h2>
+        <div id="basic-button">
+            <span><%= link_to "ホーム", insts_path, :style=>"color:white;"%></span>
+            <% if user_signed_in? %>
+              <span><%= link_to 'マイページ', edit_user_registration_path, :style=>"color:white;" %></span>
+              <span><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style=>"color:white;" %></span>
+              <span><%= link_to 'ユーザー一覧', users_path, :style=>"color:white;" %></span>
+              <span><%= link_to "メッセージ", conversations_path, :style=>"color:white;" %></span>
+            <% else %>
+              <span><%= link_to 'ログイン', new_user_session_path, :style=>"color:white;" %></span>
+              <span><%= link_to 'サインアップ', new_user_registration_path, :style=>"color:white;" %></span>
+            <% end %>
+        </div>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  </header>
+  
+<%= yield %>
+
+</body>
+</html>

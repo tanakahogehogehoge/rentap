@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h3>ユーザー</h3>
+  <% @users.each do |user| %>
+      <div class="col-md-3 col-sm-5 col-xs-9 ">
+        <div class="thumbnail">
+         <%= profile_img(user) %>
+         
+          <%= user.email %>
+          <div>
+            <%= render 'follow_form', user: user %>
+            <%= link_to "ユーザ詳細", user_path(user), class: 'btn btn-primary' %>
+          </div>
+         </div>
+        <% if user.id != current_user.id %>
+          <li>
+            <div class="item">
+              <%= link_to user.name, user %>
+              <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
+            </div>
+          </li>
+        <% end %>
+      </div>
+  <% end %>
+</div>

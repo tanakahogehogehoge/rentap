@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <p><%= notice %></p>
+    <br>
+    <div class="col-md-offset-3 col-md-6 col-md-offset-3 col-xs-offset-1 col-xs-10 col-xs-offset-1">
+      <div class ="intro">
+        <%= link_to "投稿",  new_inst_path,  class: 'btn btn-primary'%>
+        <%= link_to "画像一覧",  pictures_path,  class: 'btn btn-primary'%>
+        <br><br>
+
+      <% @insts.each do |inst| %>
+        <div class="thumbnail">
+          <% if current_user == inst.user %>
+            <%= link_to "編集する", edit_inst_path(inst.id), class: 'btn btn-primary' %>
+            <%= link_to '削除する', inst_path(inst.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger' %>
+            
+            <%= link_to inst_path(inst) do %>
+            <h4><strong><%= inst.title %></strong></h4> 
+          <% end %>
+        <% end %>
+          <div>
+            written by <%=  User.find(inst.user_id).name %> 
+            <%= profile_img(User.find(inst.user_id)) %>
+          </div>
+          <p><%= inst.content %></p>
+          <%= image_tag(inst.image) %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

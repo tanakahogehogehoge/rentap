@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">  
+    <h3>ユーザー詳細</h3>
+  </div>
+  
+  <div class="row">
+    <h4><%= @user.name %>がフォロー</h4>
+      <% @user.followed_users.each do |user| %>
+        <div class="col-md-3 col-sm-6 col-xs-9">
+          <div class = "thumbnail">
+            <%= render 'info_form', user: user %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+    
+  <div class="row">
+    <h4><%= @user.name %>のフォロワー</h4>
+      <% @user.followers.each do |user| %>
+      <div class="col-md-3 col-sm-6 col-xs-9">
+        <div class = "thumbnail">
+          <%= render 'info_form', user: user %>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
