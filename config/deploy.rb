@@ -4,7 +4,7 @@ lock '3.6.0'
 set :application, 'facebook14.19.1'
 
 # cloneするgitのレポジトリ（xxxxxxxx：ユーザ名、yyyyyyyy：アプリケーション名）
-set :repo_url, 'https://github.com/naghoge/facebook14.19.1'
+set :repo_url, 'https://github.com/naghoge/facebook_escape'
 
 # deployするブランチ。デフォルトはmasterなのでなくても可。
 set :branch, ENV['BRANCH'] || 'master'
