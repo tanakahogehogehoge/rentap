@@ -12,7 +12,7 @@
  User.create!(email: email,
               password: password,
               password_confirmation: password,
-　　　　       uid: SecureRandom.uuid,
+              uid: SecureRandom.uuid,
               )
 end
 
