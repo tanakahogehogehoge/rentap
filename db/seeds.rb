@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-5.times do |n|
+10.times do |n|
  email = Faker::Internet.email
  password = "password"
  User.create!(email: email,
@@ -16,16 +16,16 @@
               )
 end
 
-5.times do |n|
+13.times do |n|
  user_id = rand(1..User.last.id)
    unless User.find_by(id: user_id) == nil
      inst = Inst.new
-     inst.content = "hogehoge"
+     inst.content = "ほげ内容"
      inst.user_id = user_id
      inst.save
      comment = Comment.new
      comment.inst_id = inst.id
-     comment.content = "ほげほげ"
+     comment.content = "ほげコメント"
      comment.save
    end
  end
