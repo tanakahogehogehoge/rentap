@@ -21,8 +21,11 @@ end
    unless User.find_by(id: user_id) == nil
      inst = Inst.new
      inst.content = "ほげ内容"
+     inst.title = "ほげタイトル"
+     inst.image = nil
      inst.user_id = user_id
      inst.save
+
      comment = Comment.new
      comment.inst_id = inst.id
      comment.content = "ほげコメント"
