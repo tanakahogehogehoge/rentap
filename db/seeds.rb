@@ -13,10 +13,11 @@
               password: password,
               password_confirmation: password,
               uid: SecureRandom.uuid,
+              name: "サンプル",
               )
 end
 
-13.times do |n|
+1.times do |n|
  user_id = rand(1..User.last.id)
    unless User.find_by(id: user_id) == nil
      inst = Inst.new
