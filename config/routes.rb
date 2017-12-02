@@ -1,35 +1,44 @@
 Rails.application.routes.draw do
-  
+  root 'top#index'
+
   # get 'picture/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
+
   resources :insts do
     resources :comments
     post :confirm, on: :collection
   end
-  
+
+  resources :myps, only: [:index, :new, :create, :edit, :update, :show] do
+    member do
+      get 'apply_store'
+      get 'cancel_store'
+    end
+    collection do
+      post :confirm
+    end
+  end
+
   resources :conversations do
     resources :messages
   end
-  
+
   resources :pictures, only: [:index, :edit, :destroy, :update]
-  
+
   resources :relationships, only: [:create, :destroy]
-  
-  root 'top#index'
-  
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"
   }
-  
+
   resources :users, only: [:index, :show]
-  
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

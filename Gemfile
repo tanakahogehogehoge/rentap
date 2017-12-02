@@ -41,7 +41,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  
+
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
@@ -52,7 +52,7 @@ end
 group :development do
   gem 'dotenv-rails'
   gem 'letter_opener_web'
-  
+
 end
 
 gem 'rails_admin'
@@ -71,3 +71,9 @@ gem 'fog'
 gem 'dotenv-rails'
 gem 'unicorn'
 gem 'faker'
+gem 'rails-i18n'
+gem 'ransack'
+gem "gmaps4rails"
+gem "geocoder"
+gem 'pry-rails'
+gem 'better_errors'

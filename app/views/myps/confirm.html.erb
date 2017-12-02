@@ -1,0 +1,35 @@
+<h3>以下の内容で、登録する</h3>
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+      <%= form_for(@myp) do |f| %>
+      <!-- `f.hidden_field`を使用して、リクエストパラメータに値を設定できるようにしています。 -->
+        <%= f.hidden_field :uname %>
+        <%= f.hidden_field :uaddress %>
+        <%= f.hidden_field :ubankaccount %>
+      <!-- @blog.titleと@blog.contentとすることで、表示用の値を画面に出力しています。 -->
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3><%= @myp.uname %></h3> 様の登録情報
+          </div>
+
+          <div class="panel-body">
+            住所：<br><%= @myp.uaddress %><br><br>
+            銀行口座：<br><%= @myp.ubankaccount %>
+          </div>
+
+          <div class="panel-footer">
+            <%= f.submit "登録する", class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= form_for(@myp, url: new_myp_path, method: 'get') do |f| %>
+        <%= f.hidden_field :uname %>
+        <%= f.hidden_field :uaddress %>
+        <%= f.hidden_field :ubankaccount %>
+        <%=  f.submit "もどる", name: 'back' , class: 'btn btn-primary btn-sm' %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -2,8 +2,14 @@
   <% comments.each do |comment| %>
     <% unless comment.id.nil? %>
       <li>
-        <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
-        <p class="left"><%= comment.content %></p>
+        <% if current_user.id == inst.user_id %>
+          <p class="left"><font color="blue">オーナ様がコメントしました</font></p>
+          <p class="left"><font color="blue"><%= comment.content %></font></p>
+        <% else %>
+          <p class="left"><font color="red">ユーザ番号：<%= inst.user_id %>さんが質問しました</font></p>
+          <p class="left"><font color="red"><%= comment.content %></font></p>
+        <% end %>
+
         <% if current_user.id == comment.user.id %>
           <p class="right">
             <%= link_to '', edit_inst_comment_path(inst, comment), class: "fa fa-pencil-square-o fa-lg" %>

@@ -1,19 +1,23 @@
-<div class="container-fluid">
-  <div class="col-md-2 col-md-offset-3 col-sm-11 ">
-  <br>
+<h1>店舗またはスペース情報変更欄</h1>
 
-  <br>
-    <%= form_for(@inst) do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <br>
-      <%= f.label :content %>
-      <%= f.text_field :content %>
-      <br>
-      <%= f.label :画像 %>
-      <%= f.file_field :image %>
-      <br>
-      <%= f.submit %>
-    <% end %>
-  </div>
-</div<
+<section class="function container-fluid">
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+        <%= form_for(@inst) do |f| %>
+          <h3> 店舗またはスペースの住所 </h3>
+          <%= f.text_field :address, class: 'form-control' %>
+          <br>
+          <h3> 店舗またはスペース情報</h3>
+          <%= f.text_area :info,  :size=>"90x10" %>
+          <br>
+          <h3> 店舗またはスペースの画像</h3>
+          <%= f.file_field :image %>
+          <br>
+          <h3>１時間当りのレンタル料（円、半角数字のみ。例：1500</h3>
+          <%= f.text_area :cost, :size=>"10x1" %>
+          <br>
+          <%= f.submit '登録', class: 'btn btn-info btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </section>

@@ -1,23 +1,40 @@
-<div class="container">
-  <div class="col-md-offset-3 col-md-6 col-md-offset-3 col-sm-10 ">
-<p><%= notice %></p>
+<h1>店舗またはスペース情報登録欄</h1>
 <br>
-  <div class="thumbnail">
-    <%= form_for(@inst) do |f| %>
-        <div><%= f.label :タイトル %></div>
-        <div><%= f.text_field :title %></div>
+<section class="function container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
+        <p><%= notice %></p>
         <br>
-        
-        <div><%= f.label :内容 %></div>
-        <div><%= f.text_field :content %></div>
-        <br>
-        
-        <div><%= f.label :画像選択 %></div>
-        <div><%= f.file_field :image %></div>
-        <br>
-        
-        <div><%= f.submit %></div>
-      <% end %>
+        <div class="thumbnail">
+          <%= form_for(@inst) do |f| %>
+            <% if @inst.errors.any? %>
+              <div id="error_explanation">
+                <h4>画像以外はすべて必須項目です、店舗やスペース情報は１０００文字以内で、店舗やスペース備考情報は２５５文字以内で
+                  入力してください</h4>
+              </div>
+            <% end %>
+              <h3>店舗またはスペースの住所</h3>
+              <%= f.text_field :address, class: 'form-control' %>
+              <br>
+
+              <h3>店舗またはスペース情報 </h3>
+              <%= f.text_area :info, :size=>"133x10" %>
+              <br>
+
+              <h3>店舗またはスペースの業態</h3>
+              <%= f.text_field :style, class: 'form-control', placeholder: "空きスペース、ラーメン屋、焼肉屋など" %>
+              <br>
+
+              <h3>店舗またはスペースの画像</h3>
+              <%= f.file_field :image %>
+              <br>
+
+              <h3>１時間当りのレンタル料（円、半角数字のみ。例：1500）</h3>
+              <%= f.text_field :cost, class: 'form-control' %>
+              <br>
+              <%= f.submit '登録', class: 'btn btn-info btn-block' %>
+          <% end %>
+      </div>
     </div>
   </div>
-</div>
+</section>

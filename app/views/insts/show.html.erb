@@ -1,16 +1,21 @@
 <p id="notice"><%= notice %></p>
-<div class="child row">
-  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-    <div class="inst-text">
-      <p class="left"><strong>タイトル</strong></p>
-      <p class="left"><%= @inst.title %></p>
-      <p class="left"><strong>内容</strong></p>
-      <p class="left"><%= @inst.content %></p>
-      <p class="right">
-        <strong>作成時間:</strong>
-        <%= @inst.created_at.strftime("%y/%m/%d %p %l:%M") %>
-      </p>
+<div class="row">
+  <div class="col-xs-offset-4 col-xs-7 col-sm-offset-3 col-sm-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        オーナー様番号：<%= @inst.user_id%>
+        物件住所：<%= @inst.address %>
+      </div>
+      <div class="panel-body">
+        物件詳細<br><%= @inst.info %><br><br>
+        物件写真<br><%= image_tag(@inst.image) %>
+      </div>
+      <div class="panel-footer">
+        レンタル料金:<%= @inst.cost %>円/１時間
+        <%= link_to "この物件に申込む", apply_store_myp_path(inst_id: @inst.id), class: 'btn btn-primary btn-sm' %>
+      </div>
     </div>
+
     <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, inst: @inst } %>
