@@ -72,7 +72,6 @@ gem 'dotenv-rails'
 gem 'unicorn'
 gem 'faker'
 gem 'rails-i18n'
-gem 'ransack'
 gem "gmaps4rails"
 gem "geocoder"
 gem 'pry-rails'

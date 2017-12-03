@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   #↓追加
   #----------------------------
   mount_uploader :image, AvatarUploader
+  
   #----------------------------
   #↑追加
   #----------------------------

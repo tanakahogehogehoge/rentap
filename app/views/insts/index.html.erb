@@ -1,22 +1,21 @@
 <div class="container">
     <%= link_to "貸したい物件を登録する",  new_inst_path,  class: 'btn btn-primary btn-lg'%>
     <br><br>
-    <div id= searchform>
-      <%= search_form_for @q do |f| %>
-          <%= f.label :業態 %>
-          <%= f.search_field :style %>
+  <%= form_for(@inst) do |f| %>
+    <h3>住所検索</h3>
+    <%= f.text_field :address_search, class: 'form-control' %>
+    <br>
 
-          <%= f.label :住所 %>
-          <%= f.search_field :address %>
+    <h3>業態検索 </h3>
+    <%= f.text_field :style_search, class: 'form-control' %>
+    <br>
+  <% end %>
 
-          <%= f.submit %>
-        <% end %>
-    </div>
-        <br><br>
   <table class="table">
-    <tr><th>物件番号</th><th>業態<%= sort_link(@q, :style) %></th><th>レンタル料（円/1時間)<%= sort_link(@q, :cost) %></th><th>物件住所<%= sort_link(@q, :address) %></th>
+    <tr>
+      <th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th>
     </tr>
-      <% @insts.each do |inst| %>
+    <% @insts.each do |inst| %>
       <tr><th><%=inst.id %></th><th><%= inst.style %></th><th><%= inst.cost %></th><th><%= inst.address %></th>
         <th><%= link_to "物件の詳細", inst_path(inst), class: 'btn btn-primary btn-sm' %></th>
           <% if current_user == inst.user %>

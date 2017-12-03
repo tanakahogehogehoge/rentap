@@ -1,0 +1,22 @@
+<h1>Find Inst</h1>
+
+<table>
+  <%= form_tag(controller: "insts", action: "find") do %>
+    <tr><th>業態検索</th>
+      <td><%= text_field_tag("find") %></td>
+    </tr>
+      <td><%= submit_tag("click") %></td>
+</table>
+
+<table>
+  <tr>
+    <th>１番</th><th>２番</th><th>３番</th><th>４番</th>
+  </tr>
+  <% @inst.each do |obj| %>
+    <tr>
+      <td>obj.address</td>
+      <td>obj.cost</td>
+      <td>obj.style</td>
+    </tr>
+  <% end %>
+</table>

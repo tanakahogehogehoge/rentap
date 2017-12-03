@@ -1,6 +1,6 @@
 class MypsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_myp, only: [:edit, :update, :cancel_store]
+  before_action :set_myp, only: [:edit, :update]
   require "date"
 
   def index
@@ -60,6 +60,7 @@ class MypsController < ApplicationController
   end
 
   def cancel_store
+    @myp = Myp.find_by(mypid:current_user.id)
     @myp.applyid = nil
     @myp.save
     redirect_to myps_path, notice:"登録物件をキャンセルしました！"

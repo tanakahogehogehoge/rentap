@@ -3,14 +3,12 @@ class InstsController < ApplicationController
   before_action :set_inst, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Inst.ransack(params[:q])
-    @insts = @q.result(distinct: true)
-    @insts = Inst.where(address: @q.address).where(style: @q.style)
+    @insts = Inst.all
+    @inst = Inst.new
+  end
 
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def find
+
   end
 
   def new
@@ -49,7 +47,7 @@ class InstsController < ApplicationController
 
   private
     def insts_params
-      params.require(:inst).permit(:image, :cost, :info, :address, :style)
+      params.require(:inst).permit(:image, :cost, :info, :address, :style, :searchaddress, :searchstyle)
     end
 
     def set_inst
