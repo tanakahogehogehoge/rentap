@@ -1,20 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
       <br><br><br>
         <h1><%= @myp.uname %>様のマイページ</h1><br>
         <% if @myp.applyid.present? %>
-        <table class="table">
-          <left><h4>現在応募している物件</h4></left>
-          <tr><th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th></tr>
-          <tr><th><%= @myp.applyid %></th><th><%= Inst.find_by(id:@myp.applyid).style %></th><th><%= Inst.find_by(id:@myp.applyid).cost %></th><th><%= Inst.find_by(id:@myp.applyid).address %></th>
+          <table class="table table-striped">
+            <left><h4>現在応募している物件</h4></left>
+            <tr><th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th></tr>
+            <tr><th><%= @myp.applyid %></th><th><%= Inst.find_by(id:@myp.applyid).style %></th><th><%= Inst.find_by(id:@myp.applyid).cost %></th><th><%= Inst.find_by(id:@myp.applyid).address %></th>
               <th><%= link_to "物件の詳細", inst_path(id:@myp.applyid), class: 'btn btn-primary btn-sm' %></th>
               <th><%= link_to "キャンセル", cancel_store_myp_path(id:@myp.mypid), class: 'btn btn-danger btn-sm' %></th>
-          </tr>
-        </table>
+            </tr>
+          </table>
         <% else %>
           <h2>応募している物件はありません</h2>
         <% end %>
+        <br><br>
+        <h4>登録している物件一覧</h4>
+        <% @insts.each do |inst| %>
+          <% if inst.user_id == @myp.mypid %>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                [ユーザ番号：<%= inst.user_id%>]
+                [物件番号：<%= inst.id%>]
+                [物件住所：<%= inst.address %>]
+              </div>
+
+            <div class="panel-body">
+              物件詳細<br><%= inst.info %><br><br>
+              物件写真<br><%= image_tag(inst.image) %>
+            </div>
+
+            <div class="panel-footer">
+              レンタル料金:<%= inst.cost %>円/１時間
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

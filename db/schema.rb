@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202152431) do
+ActiveRecord::Schema.define(version: 20171205043627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171202152431) do
     t.string   "style"
     t.string   "searchstyle"
     t.string   "searchaddress"
+    t.string   "image_cashe"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 20171202152431) do
     t.datetime "updated_at",   null: false
     t.integer  "mypid"
     t.integer  "applyid"
+    t.integer  "permission"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -105,6 +107,11 @@ ActiveRecord::Schema.define(version: 20171202152431) do
     t.string   "provider",               default: "",    null: false
     t.string   "image_url"
     t.string   "avatar"
+    t.string   "title"
+    t.string   "description"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

@@ -3,7 +3,6 @@
 <section class="function container-fluid">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
-        <p><%= notice %></p>
         <br>
         <div class="thumbnail">
           <%= form_for(@inst) do |f| %>
@@ -14,11 +13,11 @@
               </div>
             <% end %>
               <h3>店舗またはスペースの住所</h3>
-              <%= f.text_field :address, class: 'form-control' %>
+              <%= f.text_field :address, class: 'form-control', placeholder: "都道府県から入力、東京都渋谷区～" %>
               <br>
 
               <h3>店舗またはスペース情報 </h3>
-              <%= f.text_area :info, :size=>"133x10" %>
+              <%= f.text_area :info, :size=>"133x10", placeholder: "座席数や立地条件、昼の人通り、外観や設備内容を詳細に具体的に記載「ラーメン屋をすることができます。座席数８席で厨房はガスコンロが２基あります。最寄り駅が○○で駅前の商店街の中にあるので昼の人通りは多いです、近所に△△大学がありそこの学生が多く来ることが見込まれます。すぐ隣にコンビニがあるので人通りの調査でも問題ないと出ているのだと思われます。" %>
               <br>
 
               <h3>店舗またはスペースの業態</h3>
@@ -26,13 +25,13 @@
               <br>
 
               <h3>店舗またはスペースの画像</h3>
-              <%= f.file_field :image %>
+              <center><%= f.file_field :image %></center>
               <br>
 
-              <h3>１時間当りのレンタル料（例：1500）</h3>
-              <%= f.text_field :cost, class: 'form-control' %>
+              <h3>１時間当りのレンタル料(円)</h3>
+              <%= f.text_field :cost, class: 'form-control', placeholder: "1500" %>
               <br>
-              <%= f.submit '登録', class: 'btn btn-info btn-block' %>
+              <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
           <% end %>
       </div>
     </div>

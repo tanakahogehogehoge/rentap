@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
   root 'top#index'
-
-  # get 'picture/index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   resources :insts do
-
     resources :comments
     post :confirm, on: :collection
+    get 'find', on: :collection
+    post 'find', on: :collection
   end
 
   resources :myps, only: [:index, :new, :create, :edit, :update, :show] do

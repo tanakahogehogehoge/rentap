@@ -1,28 +1,16 @@
 <div class="container">
     <%= link_to "貸したい物件を登録する",  new_inst_path,  class: 'btn btn-primary btn-lg'%>
+    <%= link_to "借りたい物件を検索する",  find_insts_path, class: 'btn btn-primary btn-lg'%>
     <br><br>
-  <%= form_for(@inst) do |f| %>
-    <h3>住所検索</h3>
-    <%= f.text_field :address_search, class: 'form-control' %>
-    <br>
 
-    <h3>業態検索 </h3>
-    <%= f.text_field :style_search, class: 'form-control' %>
-    <br>
-  <% end %>
-
-  <table class="table">
-    <tr>
-      <th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th>
-    </tr>
-    <% @insts.each do |inst| %>
-      <tr><th><%=inst.id %></th><th><%= inst.style %></th><th><%= inst.cost %></th><th><%= inst.address %></th>
-        <th><%= link_to "物件の詳細", inst_path(inst), class: 'btn btn-primary btn-sm' %></th>
-          <% if current_user == inst.user %>
-            <th><%= link_to "編集する", edit_inst_path(inst.id), class: 'btn btn-info btn-sm' %></th>
-            <th><%= link_to '削除する', inst_path(inst.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger btn-sm' %></th>
-          <% end %>
+    <table class="table table-striped">
+      <tr>
+        <th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th>
       </tr>
+      <% @insts.each do |inst| %>
+        <tr><th><%=inst.id %></th><th><%= inst.style %></th><th><%= inst.cost %></th><th><%= inst.address %></th>
+          <th><%= link_to "物件の詳細", inst_path(inst), class: 'btn btn-primary btn-sm' %></th>
+        </tr>
       <% end %>
-  </table>
+    </table>
 </div>

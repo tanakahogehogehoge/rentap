@@ -1,6 +1,6 @@
 <section class="function container-fluid">
   <div class="row">
-    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-3 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
       <%= form_for(@myp, url: user_choose_new_or_edit) do |f| %>
         <% if @myp.errors.any? %>
           <div id="error_explanation">
@@ -14,10 +14,10 @@
         <h3>氏名</h3>
         <%= f.text_area :uname, :size=>"50x1" , class: 'form-control', placeholder: "フルネームで記載、ふりがなは不要" %>
         <h3>住所</h3>
-        <%= f.text_area :uaddress, :size=>"50x5", class: 'form-control', placeholder: "マンション等の場合は部屋番号まで記載" %>
+        <%= f.text_area :uaddress, :size=>"50x5", class: 'form-control', placeholder: "マンション等の場合は部屋番号まで記載、東京都足立区西新井１－２１－２○○マンション１０４号室" %>
         <br>
         <h3>登録銀行口座</h3>
-        <%= f.text_area :ubankaccount, :size=>"50x1", class: 'form-control', placeholder: "ハイフン不要、銀行番号(4桁)支店番号（３桁）口座番号（７桁ないし８桁）の順に記入、例：00011230123456" %>
+        <%= f.text_area :ubankaccount, :size=>"80x1", class: 'form-control', placeholder: "ハイフン不要、銀行番号(4桁)支店番号（３桁）口座番号（７桁ないし８桁）の順に記入、例：00011230123456" %>
         <br>
         <br>
         <%= f.submit '登録', class: 'btn btn-primary btn-block' %>

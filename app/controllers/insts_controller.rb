@@ -3,12 +3,12 @@ class InstsController < ApplicationController
   before_action :set_inst, only: [:show, :edit, :update, :destroy]
 
   def index
-    @insts = Inst.all
-    @inst = Inst.new
-  end
-
-  def find
-
+    @myp = Myp.find_by(mypid:current_user.id)
+    if @myp.present?
+      @insts = Inst.all
+    else
+      redirect_to new_myp_path
+    end
   end
 
   def new
@@ -16,6 +16,7 @@ class InstsController < ApplicationController
   end
 
   def show
+    @myp = Myp.find_by(mypid:current_user.id)
     @comment = @inst.comments.build
     @comments = @inst.comments
   end
@@ -23,7 +24,6 @@ class InstsController < ApplicationController
   def create
     @inst = Inst.new(insts_params)
     @inst.user_id = current_user.id
-
     if @inst.save
       NoticeMailer.sendmail_inst(@inst).deliver
       redirect_to insts_path
@@ -33,11 +33,32 @@ class InstsController < ApplicationController
   end
 
   def destroy
+    @myps = Myp.all
+    @myps.each do |myp|
+      if @inst.id == myp.applyid
+        myp.applyid = nil
+        myp.save
+      end
+    end
     @inst.destroy
     redirect_to insts_path
   end
 
   def edit
+  end
+
+  def find
+    @insts = Array.new
+    @myp = Myp.find_by(mypid:current_user.id)
+    if @myp.present?
+      if request.post? then
+        f ='%' + params[:address_search] + '%'
+        ff ='%' + params[:style_search] + '%'
+        @insts = Inst.where('address like ? and style like ?', f,ff)
+      end
+    else
+      redirect_to new_myp_path
+    end
   end
 
   def update

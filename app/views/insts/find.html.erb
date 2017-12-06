@@ -1,22 +1,24 @@
-<h1>Find Inst</h1>
+<h1>物件の検索</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+      <table>
+        <%= form_tag(controller: "insts", action: "find") do %>
+          業態検索：<%= text_field_tag("style_search") %>住所検索：<%= text_field_tag("address_search") %>
+          <%= submit_tag("検索") %>
+          <% end %>
+      </table>
+      <br><br>
 
-<table>
-  <%= form_tag(controller: "insts", action: "find") do %>
-    <tr><th>業態検索</th>
-      <td><%= text_field_tag("find") %></td>
-    </tr>
-      <td><%= submit_tag("click") %></td>
-</table>
-
-<table>
-  <tr>
-    <th>１番</th><th>２番</th><th>３番</th><th>４番</th>
-  </tr>
-  <% @inst.each do |obj| %>
-    <tr>
-      <td>obj.address</td>
-      <td>obj.cost</td>
-      <td>obj.style</td>
-    </tr>
-  <% end %>
-</table>
+    <table class="table table-striped">
+      <tr><th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th></tr>
+      <% @insts.each do |inst| %>
+        <tr>
+          <th><%= inst.id %></th><th><%= inst.style %></th><th><%= inst.cost %></th><th><%= inst.address %></th>
+          <th><%= link_to "物件の詳細", inst_path(id:inst.id), class: 'btn btn-primary btn-sm' %></th>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+  </div>
+</div>

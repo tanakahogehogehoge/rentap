@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
     # Instをパラメータの値から探し出し,Instに紐づくcommentsとしてbuildします。
     @comment = current_user.comments.build(comment_params)
@@ -12,7 +13,7 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     set_comment
     @inst = @comment.inst
@@ -23,11 +24,11 @@ class CommentsController < ApplicationController
         format.js { render :index }
     end
   end
-  
+
   def edit
     @comment = Comment.find(params[:id])
   end
-  
+
   def update
         @comment = Comment.find(params[:id])
         if @comment.update(comment_params)
@@ -36,13 +37,13 @@ class CommentsController < ApplicationController
             render 'edit'
         end
   end
-  
+
   private
     # ストロングパラメーター
     def comment_params
       params.require(:comment).permit(:inst_id, :content)
     end
-    
+
     def set_comment
        @comment = Comment.find(params[:id])
     end

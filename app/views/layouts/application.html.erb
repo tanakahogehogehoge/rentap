@@ -12,21 +12,22 @@
 <div class="container">
   <nav class="navbar navbar-inverse">
     <div class ="container-fluid">
-      <div class="navbar-header">
-        <a href="#" class="navbar-brand">レンタップ</a>
+      <!-- <div class="navbar-header">
+        <a href="localhost:3000" class="navbar-brand">レンタップ</a>
       </div>
+
+      -->
       <% if user_signed_in? %>
         <ul class ="nav navbar-nav">
-          <li class = "active">
-            <a href ="/myps"><span class="glyphicon glyphicon-home"></span>ホーム</a>
-          </li>
-          <li><a href ="/insts"><span class="glyphicon glyphicon-search"></span>検索</a></li>
-          <li><a href ="/destroy_user_session"><span class="glyphicon glyphicon-log-out"></span>ログアウト</a></li>
+          <li><%= link_to 'レンタップ', root_path, :style=>"color:white;" %></li>
+          <li><%= link_to 'マイページ', myps_path, :style=>"color:white;" %></li>
+          <li><%= link_to '物件一覧', insts_path, :style=>"color:white;" %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style=>"color:white;" %></li>
         </ul>
       <% else %>
         <ul class ="nav navbar-nav">
-          <li><a href ="new_user_registration_path"><span class="glyphicon glyphicon-upload"></span>サインアウト</a></li>
-          <li><a href ="new_user_session_path"><span class="glyphicon glyphicon-log-in"></span>ログイン</a></li>
+          <li><%= link_to 'ログイン', new_user_session_path, :style=>"color:white;" %></li>
+          <li><%= link_to 'サインアップ', new_user_registration_path, :style=>"color:white;" %></li>
         </ul>
       <% end %>
       </div>

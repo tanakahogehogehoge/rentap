@@ -9,6 +9,6 @@ class NoticeMailer < ApplicationMailer
     @inst = inst
 
     mail to: "ny_bigapplejr@yahoo.co.jp",
-         subject: 'インスタ投稿！！'
+         subject: '不動産情報が登録されました'
   end
 end

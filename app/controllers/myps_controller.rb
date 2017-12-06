@@ -6,7 +6,7 @@ class MypsController < ApplicationController
   def index
     @myp = Myp.find_by(mypid:current_user.id)
     if @myp.present?
-
+      @insts = Inst.all
     else
       redirect_to new_myp_path
     end
