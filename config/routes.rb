@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'maps/index' 
+  get 'maps/index'
   root 'top#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
