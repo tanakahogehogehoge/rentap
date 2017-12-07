@@ -5,7 +5,11 @@ class InstsController < ApplicationController
   def index
     @myp = Myp.find_by(mypid:current_user.id)
     if @myp.present?
-      @insts = Inst.all
+      @insts = Inst.page(params[:page])
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
       redirect_to new_myp_path
     end
@@ -68,7 +72,7 @@ class InstsController < ApplicationController
 
   private
     def insts_params
-      params.require(:inst).permit(:image, :cost, :info, :address, :style, :searchaddress, :searchstyle)
+      params.require(:inst).permit(:image, :cost, :info, :address, :style)
     end
 
     def set_inst

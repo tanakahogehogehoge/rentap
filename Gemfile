@@ -76,3 +76,4 @@ gem "gmaps4rails"
 gem "geocoder"
 gem 'pry-rails'
 gem 'better_errors'
+gem 'kaminari'

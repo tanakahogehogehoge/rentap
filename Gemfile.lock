@@ -508,6 +508,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   letter_opener_web
   mini_magick
   omniauth
