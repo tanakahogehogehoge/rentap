@@ -11,8 +11,9 @@
           <%= f.text_area :info,  :size=>"90x10" %>
           <br>
           <h3> 店舗またはスペースの画像</h3>
-          <%= f.file_field :image %>
+          <center><%= f.file_field :image %></center>
           <%= f.hidden_field :image_cache %>
+
           <br>
           <h3>１時間当りのレンタル料（円、半角数字のみ。例：1500</h3>
           <%= f.text_area :cost, :size=>"10x1" %>

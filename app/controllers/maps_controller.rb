@@ -5,7 +5,7 @@ class MapController < ApplicationController
       marker.lat inst.latitude
       marker.lng inst.longitude
       marker.infowindow inst.description
-      marker.json({title: inst.title})
+      marker.json({title: inst.address})
     end
   end
 end
