@@ -8,13 +8,13 @@
 
 
 
-10.times do |n|
+14.times do |n|
      inst = Inst.new
      inst.user_id = 1
-     inst.cost = 1200
+     inst.cost = rand(900..1600)
      inst.info = "ほげほげほげ"
      inst.image = nil
      inst.address = Faker::Address.state
-     inst.style = "ラーメン"
+     inst.style = "空きスペース"
      inst.save
 end
