@@ -12,8 +12,8 @@ CarrierWave.configure do |config|
 
   case Rails.env
     when 'production'
-      config.fog_directory = 'facebook14.19.1-production'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/facebook14.19.1-production'
+#      config.fog_directory = 'facebook14.19.1-production'
+#      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/facebook14.19.1-production'
     when 'development'
 #      config.fog_directory = 'facebook14.19.1-development'
 #      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/facebook14.19.1-developmen'
