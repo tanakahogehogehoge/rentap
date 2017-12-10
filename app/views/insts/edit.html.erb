@@ -12,11 +12,12 @@
           <br>
           <h3> 店舗またはスペースの画像</h3>
           <%= f.file_field :image %>
+          <%= f.hidden_field :image_cache %>
           <br>
           <h3>１時間当りのレンタル料（円、半角数字のみ。例：1500</h3>
           <%= f.text_area :cost, :size=>"10x1" %>
           <br>
-          <%= f.submit '登録', class: 'btn btn-info btn-block' %>
+          <center><div><%= f.submit '登録', class: 'btn btn-primary btn-block' %></div></center>
         <% end %>
       </div>
     </div>

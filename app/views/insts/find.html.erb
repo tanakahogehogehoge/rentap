@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
-      <table>
         <%= form_tag(controller: "insts", action: "find") do %>
-          業態検索：<%= text_field_tag("style_search") %>住所検索：<%= text_field_tag("address_search") %>
-          <%= submit_tag("検索") %>
-          <% end %>
-      </table>
+          <table>
+            業態検索：<%= text_field_tag("style_search") %>住所検索：<%= text_field_tag("address_search") %>
+            <%= submit_tag("検索") %>
+          </table>
+        <% end %>
       <br><br>
 
     <table class="table table-striped">

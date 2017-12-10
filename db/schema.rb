@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20171207112231) do
     t.string   "style"
     t.string   "searchstyle"
     t.string   "searchaddress"
-    t.string   "image_cashe"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "description"
@@ -110,11 +109,6 @@ ActiveRecord::Schema.define(version: 20171207112231) do
     t.string   "provider",               default: "",    null: false
     t.string   "image_url"
     t.string   "avatar"
-    t.string   "title"
-    t.string   "description"
-    t.string   "address"
-    t.float    "latitude"
-    t.float    "longitude"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

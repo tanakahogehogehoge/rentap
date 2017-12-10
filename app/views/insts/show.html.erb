@@ -10,9 +10,9 @@
 
       <div class="panel-body">
         物件詳細<br><%= @inst.info %><br><br>
-        物件写真<br><% image_tag(@inst.image) %>
+        物件写真<br><%= image_tag @inst.image.url %>
       </div>
-
+      
       <div class="panel-footer">
         レンタル料金:<%= @inst.cost %>円/１時間
         <% if current_user.id == @inst.user_id %>

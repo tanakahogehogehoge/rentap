@@ -58,7 +58,7 @@ class InstsController < ApplicationController
       if request.post? then
         f ='%' + params[:address_search] + '%'
         ff ='%' + params[:style_search] + '%'
-        @insts = Inst.where('address like ? and style like ?', f,ff)
+        @insts = Inst.where('address like ? and style like ?', f,ff).order 'cost asc'
       end
     else
       redirect_to new_myp_path
@@ -72,7 +72,7 @@ class InstsController < ApplicationController
 
   private
     def insts_params
-      params.require(:inst).permit(:image, :cost, :info, :address, :style)
+      params.require(:inst).permit(:image, :cost, :info, :address, :style, :image_cache)
     end
 
     def set_inst
