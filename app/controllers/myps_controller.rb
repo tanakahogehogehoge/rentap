@@ -37,6 +37,11 @@ class MypsController < ApplicationController
 
   def show
     @myp = Myp.find_by(mypid:current_user.id)
+    if @myp.present?
+
+    else
+      redirect_to new_myp_path
+    end
   end
 
   def edit
