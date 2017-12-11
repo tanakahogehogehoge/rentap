@@ -3,37 +3,36 @@
 <section class="function container-fluid">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
-        <br>
-        <div class="thumbnail">
-          <%= form_for(@inst) do |f| %>
-            <% if @inst.errors.any? %>
-              <div id="error_explanation">
-                <h4>画像以外はすべて必須項目です、店舗やスペース情報は１０００文字以内で、店舗やスペース備考情報は２５５文字以内で
-                  入力してください</h4>
-              </div>
-            <% end %>
-              <h3>店舗またはスペースの住所</h3>
-              <%= f.text_field :address, class: 'form-control', placeholder: "都道府県から入力、東京都渋谷区～" %>
-              <br>
-
-              <h3>店舗またはスペース情報 </h3>
-              <%= f.text_area :info, :size=>"133x10", placeholder: "座席数や立地条件、昼の人通り、外観や設備内容を詳細に具体的に記載「ラーメン屋をすることができます。座席数８席で厨房はガスコンロが２基あります。最寄り駅が○○で駅前の商店街の中にあるので昼の人通りは多いです、近所に△△大学がありそこの学生が多く来ることが見込まれます。すぐ隣にコンビニがあるので人通りの調査でも問題ないと出ているのだと思われます。" %>
-              <br>
-
-              <h3>店舗またはスペースの業態</h3>
-              <%= f.text_field :style, class: 'form-control', placeholder: "空きスペース、ラーメン屋、焼肉屋など" %>
-              <br>
-
-              <h3>店舗またはスペースの画像</h3>
-
-              <center><%= f.file_field :image %></center>
-              <%= f.hidden_field :image_cache %>
-
-              <h3>１時間当りのレンタル料(円)</h3>
-              <%= f.text_field :cost, class: 'form-control', placeholder: "1500" %>
-              <br>
-              <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      <%= notice %>
+      <div class="thumbnail">
+        <%= form_for(@inst) do |f| %>
+          <% if @inst.errors.any? %>
+            <div id="error_explanation">
+              <h4><font color="red">住所、情報、業態、レンタル料に関してはすべて必須項目です。住所は都道府県から、情報に関しては２０文字以上１２００文字以内、レンタル料は半角数字で１円以上を入れてください</font></h4>
+            </div>
           <% end %>
+            <h3>店舗またはスペースの住所</h3>
+            <%= f.text_field :address, class: 'form-control', placeholder: "都道府県から入力、東京都渋谷区～" %>
+            <br>
+
+            <h3>店舗またはスペース情報 </h3>
+            <%= f.text_area :info, :size=>"133x10", placeholder: "座席数や立地条件、昼の人通り、外観や設備内容を詳細に具体的に記載「ラーメン屋をすることができます。座席数８席で厨房はガスコンロが２基あります。最寄り駅が○○で駅前の商店街の中にあるので昼の人通りは多いです、近所に△△大学がありそこの学生が多く来ることが見込まれます。すぐ隣にコンビニがあるので人通りの調査でも問題ないと出ているのだと思われます。" %>
+            <br>
+
+            <h3>店舗またはスペースの業態</h3>
+            <%= f.text_field :style, class: 'form-control', placeholder: "空きスペース、ラーメン屋、焼肉屋など" %>
+            <br>
+
+            <h3>店舗またはスペースの画像</h3>
+
+            <center><%= f.file_field :image %></center>
+            <%= f.hidden_field :image_cache %>
+
+            <h3>１時間当りのレンタル料(円)</h3>
+            <%= f.text_field :cost, class: 'form-control', placeholder: "1500" %>
+            <br>
+            <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -9,7 +9,6 @@
 <body>
 
 <header>
-<div class="container">
   <nav class="navbar navbar-inverse">
     <div class ="container-fluid">
       <!-- <div class="navbar-header">
@@ -21,6 +20,7 @@
         <ul class ="nav navbar-nav">
           <li><%= link_to 'レンタップ', root_path, :style=>"color:white;" %></li>
           <li><%= link_to 'マイページ', myps_path, :style=>"color:white;" %></li>
+          <li><%= link_to '個人情報変更', myp_path(id:current_user.id), :style=>"color:white;" %></li>
           <li><%= link_to '物件一覧', insts_path, :style=>"color:white;" %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style=>"color:white;" %></li>
         </ul>
@@ -32,7 +32,6 @@
       <% end %>
       </div>
     </nav>
-  </div>
 </header>
 
 <%= yield %>

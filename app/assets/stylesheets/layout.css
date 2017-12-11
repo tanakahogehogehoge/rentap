@@ -3,7 +3,12 @@ header{
     margin:0;padding:0;
 }
 
+#error_explanation{
+  left
+}
+
 body {
+  margin:0;padding:0;
   text-align: center;
 
   /* background-image: url(top.jpg); */
@@ -35,10 +40,4 @@ h3{
 
 strong{
     font-family: inherit;
-}
-
-#map-canvas {
-  width: 100%;
-  height: 200px;
-  background-color: #e7e7e7;
 }

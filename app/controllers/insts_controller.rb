@@ -17,6 +17,9 @@ class InstsController < ApplicationController
 
   def new
     @inst = Inst.new
+    if @inst.invalid?
+      render :new
+    end
   end
 
   def show
