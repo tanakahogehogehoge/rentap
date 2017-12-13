@@ -3,12 +3,16 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  # RMagickをincludeします
+  include CarrierWave::RMagick
 
+    # リサイズします
+  process resize_to_limit: [250, 250]
   # Choose what kind of storage to use for this uploader:
   storage :file
    # ↓以下に変更
   # storage :fog
-
+  process :convert => 'jpg'
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir

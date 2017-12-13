@@ -14,9 +14,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   #storage :fog
   process :convert => 'jpg'
 
-  version :thumb do
-    process :resize_to_limit => [200, 200]
-  end
+  #version :thumb do
+  #  process :resize_to_limit => [200, 200]
+  # end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir

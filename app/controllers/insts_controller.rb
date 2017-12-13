@@ -43,7 +43,8 @@ class InstsController < ApplicationController
     @myps = Myp.all
     @myps.each do |myp|
       if @inst.id == myp.applyid
-        myp.applyid = nil
+        myp.applyid = 0
+        myp.permission = 0
         myp.save
       end
     end
@@ -66,6 +67,27 @@ class InstsController < ApplicationController
     else
       redirect_to new_myp_path
     end
+  end
+
+  def apply_user
+    @myps = Myp.all
+    @inst = Inst.find_by(id: params[:id])
+  end
+
+  def permit
+    @myp = Myp.find_by(id: params[:id])
+    @myp.permission = 2
+    @myp.save
+    redirect_to apply_user_inst_path(id: @myp.applyid)
+  end
+
+  def deny
+    @myp = Myp.find_by(id: params[:id])
+    hoge = @myp.applyid
+    @myp.permission = 0
+    @myp.applyid = 0
+    @myp.save
+    redirect_to apply_user_inst_path(id: hoge)
   end
 
   def update

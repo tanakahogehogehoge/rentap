@@ -22,6 +22,7 @@
           <li><%= link_to 'マイページ', myps_path, :style=>"color:white;" %></li>
           <li><%= link_to '個人情報変更', myp_path(id:current_user.id), :style=>"color:white;" %></li>
           <li><%= link_to '物件一覧', insts_path, :style=>"color:white;" %></li>
+          <li><%= link_to '使い方', howtos_path, :style=>"color:white;" %></li>
           <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, :style=>"color:white;" %></li>
         </ul>
       <% else %>

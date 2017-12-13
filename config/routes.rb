@@ -9,6 +9,16 @@ Rails.application.routes.draw do
     post :confirm, on: :collection
     get 'find', on: :collection
     post 'find', on: :collection
+
+    member do
+      get 'apply_user'
+      get 'permit'
+      get 'deny'
+    end
+  end
+
+  resources :howtos, only: [:index] do
+
   end
 
   resources :myps, only: [:index, :new, :create, :edit, :update, :show] do

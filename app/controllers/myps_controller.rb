@@ -7,6 +7,7 @@ class MypsController < ApplicationController
     @myp = Myp.find_by(mypid:current_user.id)
     if @myp.present?
       @insts = Inst.all
+      @myps = Myp.all
     else
       redirect_to new_myp_path
     end
@@ -28,8 +29,10 @@ class MypsController < ApplicationController
   def create
     @myp = Myp.create(myps_params)
     @myp.mypid = current_user.id
+    @myp.applyid = 0
+    @myp.permission = 0
     if @myp.save
-      redirect_to myps_path, notice: "マイペクリエアクション"
+      redirect_to myps_path, notice:"個人情報が登録または変更されました"
     else
       render 'new'
     end
@@ -54,21 +57,23 @@ class MypsController < ApplicationController
 
   def apply_store
     @myp = Myp.find_by(mypid:current_user.id)
-    if @myp.applyid.present?
-      redirect_to myps_path, notice:"すでに物件を申し込み済みです！"
+    unless @myp.applyid == 0
+      redirect_to myps_path # 物件を申し込んでマイページの頭に飛ぶ
     else
       @myp.applyid = params[:inst_id]
+      @myp.permission = 1 # 許可待ち状態へ
       @inst= Inst.find(params[:inst_id])
       @myp.save
-      redirect_to myps_path
+      redirect_to myps_path, notice:"物件に申し込みました、オーナ様の許可をお待ちください" # 物件を申し込んでマイページの頭に飛ぶ
     end
   end
 
   def cancel_store
     @myp = Myp.find_by(mypid:current_user.id)
-    @myp.applyid = nil
+    @myp.permission = 0
+    @myp.applyid = 0
     @myp.save
-    redirect_to myps_path, notice:"登録物件をキャンセルしました！"
+    redirect_to myps_path, notice:"応募物件をキャンセルしました！"
   end
 
   def confirm
@@ -78,7 +83,7 @@ class MypsController < ApplicationController
 
   private
     def myps_params
-      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :mypid, :applyid)
+      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :mypid, :applyid, :avatar, :uemail)
     end
 
     def set_myp
