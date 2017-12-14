@@ -97,7 +97,7 @@ class InstsController < ApplicationController
 
   private
     def insts_params
-      params.require(:inst).permit(:image, :cost, :info, :address, :style, :image_cache)
+      params.require(:inst).permit(:image, :image2, :image3, :image4, :cost, :info, :address, :style, :image_cache, :image2_cache, :image3_cache, :image4_cashe)
     end
 
     def set_inst

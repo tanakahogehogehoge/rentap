@@ -23,10 +23,15 @@
             <br>
 
             <h3>店舗またはスペースの画像</h3>
-
-            <center><%= f.file_field :image %></center>
-            <%= f.hidden_field :image_cache %>
-
+              <span>物件写真１：<center><%= f.file_field :image %></center></span>
+              <%= f.hidden_field :image_cache %>
+              <span>物件写真２：<center><%= f.file_field :image2 %></center></span>
+                <%= f.hidden_field :image2_cache %>
+              <span>物件写真３：<center><%= f.file_field :image3 %></center></span>
+                <%= f.hidden_field :image3_cache %>
+              <span>物件写真４：<center><%= f.file_field :image4 %></center></span>
+                  <%= f.hidden_field :image4_cache %>
+                  
             <h3>１時間当りのレンタル料(円)</h3>
             <%= f.text_field :cost, class: 'form-control', placeholder: "1500" %>
             <br>

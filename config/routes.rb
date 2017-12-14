@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'maps/index'
   root 'top#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
@@ -18,6 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :howtos, only: [:index] do
+
+  end
+
+  resources :maps, only: [:index] do
 
   end
 

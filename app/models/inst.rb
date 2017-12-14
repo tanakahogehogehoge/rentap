@@ -10,4 +10,7 @@ class Inst < ActiveRecord::Base
     # CommentモデルのAssociationを設定
     has_many :comments, dependent: :destroy
     mount_uploader :image, ImageUploader
+    mount_uploader :image2, Image2Uploader
+    mount_uploader :image3, Image3Uploader
+    mount_uploader :image4, Image4Uploader
 end

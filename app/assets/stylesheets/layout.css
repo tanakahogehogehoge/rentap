@@ -9,7 +9,7 @@ body {
 
   /* background-image: url(top.jpg); */
 /* 画像を常に天地左右の中央に配置 */
-  background-position: center center;
+
 
  /* 画像をタイル状に繰り返し表示しない */
   background-repeat: no-repeat;
@@ -33,6 +33,10 @@ h3{
     text-align : center;
 }
 
+#sample {
+    width: 700px;
+    height: 400px;
+}
 
 strong{
     font-family: inherit;

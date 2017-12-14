@@ -1,36 +1,39 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
-      <h2>物件番号：<%= @inst.id %><br>物件住所：<%= @inst.address %></h2>
-      <h3>申込みユーザ</h3>
-      <% @myps.each do |myp| %>
-        <% if myp.applyid == @inst.id %>
+      <% if @inst.user_id == current_user.id %>
+        <h2>物件番号：<%= @inst.id %><br>物件住所：<%= @inst.address %></h2>
+        <h3>申込みユーザ</h3>
+        <% @myps.each do |myp| %>
+          <% if myp.applyid == @inst.id %>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-          <% if myp.permission == 1 %>
-            <%= link_to "許可", permit_inst_path(myp.mypid), class: 'btn btn-primary btn-sm' %>
-            <%= link_to "不許可", deny_inst_path(myp.mypid), class: 'btn btn-danger btn-sm' %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <% if myp.permission == 1 %>
+              <%= link_to "許可", permit_inst_path(myp.mypid), class: 'btn btn-primary btn-sm' %>
+              <%= link_to "不許可", deny_inst_path(myp.mypid), class: 'btn btn-danger btn-sm' %>
+            <% end %>
+            ユーザID:<%= myp.mypid%>
+            <h3><%= myp.uname %> 様の登録情報 &nbsp; &nbsp; <%= image_tag myp.avatar_url %></h3>
+            </div>
+
+            <div class="panel-body">
+              <h4>住所：<%= myp.uaddress %></h4><br>
+              <h4>銀行口座：<%= myp.ubankaccount %></h4><br>
+              <h4>メールアドレス：<%= myp.uemail %></h4><br>
+            </div>
+
+            <div class="panel-footer">
+              <% if myp.permission == 2 %>
+                <h3><div class="label label-primary">許可済み</div></h3>
+                <% end %>
+            </div>
+          </div>
           <% end %>
-          ユーザID:<%= myp.mypid%>
-          <h3><%= myp.uname %> 様の登録情報 &nbsp; &nbsp; <%= image_tag myp.avatar_url %></h3>
-          </div>
-
-          <div class="panel-body">
-            <h4>住所：<%= myp.uaddress %></h4><br>
-            <h4>銀行口座：<%= myp.ubankaccount %></h4><br>
-            <h4>メールアドレス：<%= myp.uemail %></h4><br>
-          </div>
-
-          <div class="panel-footer">
-            <% if myp.permission == 2 %>
-              <h3><div class="label label-primary">許可済み</div></h3>
-              <% end %>
-          </div>
-        </div>
         <% end %>
+      <% else %>
+        <h2>不動産番号：<%= @inst.id %>はオーナ様しか閲覧できません</h2>
       <% end %>
-      </div>
     </div>
   </div>
 </div>
