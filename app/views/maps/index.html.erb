@@ -1,26 +1,9 @@
-<title>テスト</title>
-<style>
-#sample {
-	width: 100px;
-	height: 100px;
-}
-</style>
-
-
-<script>
-var map;
-function initMap() {
-	map = new google.maps.Map(document.getElementById('sample'), { // #sampleに地図を埋め込む
-		center: { // 地図の中心を指定
-			lat: 34.7019399, // 緯度
-			lng: 135.51002519999997 // 経度
-		},
-		zoom: 19 // 地図のズームを指定
-	});
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADp4HpF1IzW6mhZLg7nTKqMe35zQxPjwE"></script>
-
 <div class="container-fluid">
-  <div id="sample"></div>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+      <%= month_calendar do |date| %>
+        <%= date %>
+      <% end %>
+    </div>
+  </div>
 </div>

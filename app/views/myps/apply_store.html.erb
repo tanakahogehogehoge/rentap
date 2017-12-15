@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+        <%= form_tag(controller: "myps", action: "apply_store") do %>
+            物件を利用する日：<%= date_field_tag("date_hoge") %>&nbsp;&nbsp;&nbsp;
+            物件の利用開始時間：<%= time_field_tag("starttime_hoge") %>&nbsp;&nbsp;&nbsp;
+            物件の終了時間：<%= time_field_tag("endtime_hoge") %><br>
+            <%= submit_tag("決定") %>
+        <% end %>
+        <th><%= link_to "キャンセル", cancel_store_myp_path(id: current_user.id), class: 'btn btn-danger btn-sm' %></th>
+    </div>
+  </div>
+</div>

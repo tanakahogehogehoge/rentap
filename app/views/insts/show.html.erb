@@ -2,36 +2,34 @@
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-1 col-sm-10 col-sm-offset-1">
       <div class="panel panel-default">
+        <div class="panel-heading">
+          [ユーザ番号：<%= @inst.user_id%>]
+          [物件番号：<%= @inst.id%>]
+          [物件住所：<%= @inst.address %>]
+        </div>
 
-      <div class="panel-heading">
-        [ユーザ番号：<%= @inst.user_id%>]
-        [物件番号：<%= @inst.id%>]
-        [物件住所：<%= @inst.address %>]
-      </div>
+        <div class="panel-body">
+          物件詳細<br><%= @inst.info %><br><br>
+          <center><h2>物件写真1</h2><br><%= image_tag @inst.image.url %></center><br>
+          <center><h2>物件写真2</h2><br><%= image_tag @inst.image2.url %></center><br>
+          <center><h2>物件写真3</h2><br><%= image_tag @inst.image3.url %></center><br>
+          <center><h2>物件写真4</h2><br><%= image_tag @inst.image4.url %></center><br>
+        </div>
 
-      <div class="panel-body">
-        物件詳細<br><%= @inst.info %><br><br>
-        <center><h2>物件写真1</h2><br><%= image_tag @inst.image.url %></center><br>
-        <center><h2>物件写真2</h2><br><%= image_tag @inst.image2.url %></center><br>
-        <center><h2>物件写真3</h2><br><%= image_tag @inst.image3.url %></center><br>
-        <center><h2>物件写真4</h2><br><%= image_tag @inst.image4.url %></center><br>
-      </div>
-
-      <div class="panel-footer">
-        レンタル料金:<%= @inst.cost %>円/１時間
-        <% if current_user.id == @inst.user_id %>
-          <th><%= link_to "編集する", edit_inst_path(@inst.id), class: 'btn btn-info btn-sm' %></th>
-          <th><%= link_to '削除する', inst_path(@inst.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger btn-sm' %></th>
-        <% else %>
-          <% unless @myp.applyid == 0 %>
-            <h4>現在物件を申込み済みです</h4>
+        <div class="panel-footer">
+          レンタル料金:<%= @inst.cost %>円/１時間
+          <% if current_user.id == @inst.user_id %>
+            <th><%= link_to "編集する", edit_inst_path(@inst.id), class: 'btn btn-info btn-sm' %></th>
+            <th><%= link_to '削除する', inst_path(@inst.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-danger btn-sm' %></th>
           <% else %>
-          <th><%= link_to "この物件に申込む", apply_store_myp_path(inst_id: @inst.id), class: 'btn btn-primary btn-sm' %></th>
+            <% unless @myp.applyid == 0 %>
+              <h4>現在物件を申込み済みです</h4>
+            <% else %>
+            <th><%= link_to "この物件に申込む", apply_store_myp_path(inst_id: @inst.id), class: 'btn btn-primary btn-sm' %></th>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-
     <p>コメント一覧</p>
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, inst: @inst } %>

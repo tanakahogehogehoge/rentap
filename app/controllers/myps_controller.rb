@@ -43,7 +43,7 @@ class MypsController < ApplicationController
     if @myp.present?
 
     else
-      redirect_to new_myp_path
+      redirect_to new_myp_path, notice:"マイページを作成してください"
     end
   end
 
@@ -57,14 +57,22 @@ class MypsController < ApplicationController
 
   def apply_store
     @myp = Myp.find_by(mypid:current_user.id)
+    hoge = params[:inst_id]
+    binding.pry
     unless @myp.applyid == 0
-      redirect_to myps_path # 物件を申し込んでマイページの頭に飛ぶ
+      redirect_to myps_path, notice:"すでに物件を申し込んでいます, 自身でキャンセルするかオーナ様の不許可をお待ちください"  # 物件を申し込んでマイページの頭に飛ぶ
     else
-      @myp.applyid = params[:inst_id]
+      if request.post? then
+      @myp.applyid = hoge
+      binding.pry
       @myp.permission = 1 # 許可待ち状態へ
-      @inst= Inst.find(params[:inst_id])
+      #@inst= Inst.find(params[:inst_id])
+      # params[:date_hoge]
+      # params[:starttime_hoge]
+      # params[:endtime_hoge]
       @myp.save
       redirect_to myps_path, notice:"物件に申し込みました、オーナ様の許可をお待ちください" # 物件を申し込んでマイページの頭に飛ぶ
+      end
     end
   end
 

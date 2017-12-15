@@ -77,3 +77,6 @@ gem "geocoder"
 gem 'pry-rails'
 gem 'better_errors'
 gem 'kaminari'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
+gem "simple_calendar"

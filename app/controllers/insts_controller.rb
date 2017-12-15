@@ -11,7 +11,7 @@ class InstsController < ApplicationController
         format.js
       end
     else
-      redirect_to new_myp_path
+      redirect_to new_myp_path, notice:"マイページを作成してください"
     end
   end
 
@@ -33,7 +33,7 @@ class InstsController < ApplicationController
     @inst.user_id = current_user.id
     if @inst.save
       NoticeMailer.sendmail_inst(@inst).deliver
-      redirect_to insts_path
+      redirect_to insts_path, notice:"不動産住所：#{@inst.address}が登録されました"
     else
       redirect_to new_inst_path
     end
@@ -49,7 +49,7 @@ class InstsController < ApplicationController
       end
     end
     @inst.destroy
-    redirect_to insts_path
+    redirect_to insts_path, notice:"登録した不動産情報を削除しました"
   end
 
   def edit
@@ -65,7 +65,7 @@ class InstsController < ApplicationController
         @insts = Inst.where('address like ? and style like ?', f,ff).order 'cost asc'
       end
     else
-      redirect_to new_myp_path
+      redirect_to new_myp_path, notice:"マイページを作成してください"
     end
   end
 
@@ -78,7 +78,7 @@ class InstsController < ApplicationController
     @myp = Myp.find_by(id: params[:id])
     @myp.permission = 2
     @myp.save
-    redirect_to apply_user_inst_path(id: @myp.applyid)
+    redirect_to apply_user_inst_path(id: @myp.applyid), notice:"申し込んだユーザに許可をだしました"
   end
 
   def deny
@@ -87,12 +87,12 @@ class InstsController < ApplicationController
     @myp.permission = 0
     @myp.applyid = 0
     @myp.save
-    redirect_to apply_user_inst_path(id: hoge)
+    redirect_to apply_user_inst_path(id: hoge), notice:"申し込んだユーザに不許可をだしました"
   end
 
   def update
     @inst.update(insts_params)
-    redirect_to insts_path
+    redirect_to insts_path, notice:"不動産情報が更新されました"
   end
 
   private

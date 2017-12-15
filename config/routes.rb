@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :myps, only: [:index, :new, :create, :edit, :update, :show] do
     member do
       get 'apply_store'
+      post 'apply_store'
       get 'cancel_store'
     end
     collection do
