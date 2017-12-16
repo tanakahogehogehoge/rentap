@@ -1,13 +1,25 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 col-sm-offset-2 col-sm-8 col-sm-offset-2">
-        <%= form_tag(controller: "myps", action: "apply_store") do %>
-            物件を利用する日：<%= date_field_tag("date_hoge") %>&nbsp;&nbsp;&nbsp;
-            物件の利用開始時間：<%= time_field_tag("starttime_hoge") %>&nbsp;&nbsp;&nbsp;
-            物件の終了時間：<%= time_field_tag("endtime_hoge") %><br>
-            <%= submit_tag("決定") %>
-        <% end %>
-        <th><%= link_to "キャンセル", cancel_store_myp_path(id: current_user.id), class: 'btn btn-danger btn-sm' %></th>
+      <%= form_for(@myp) do |f| %>
+        物件を利用する日：<%= f.date_field :data %><br><br>
+        利用開始時間：<%= f.time_field :starttime %>～
+        利用終了時間：<%= f.time_field :endtime %><br>
+        <%= f.submit '登録', class: 'btn btn-primary btn-sm' %> &nbsp;&nbsp;
+      <% end %>
+      <%= link_to "キャンセル", cancel_store_myp_path(id: current_user.id), class: 'btn btn-danger btn-sm' %><br>
+      <br><br>
+      <h2>本物件ですでに予約されている日時一覧</h2>
+      <% @myps.each do |hoge| %>
+        <table class="table table-striped">
+          <% if @myp.applyid == hoge.applyid %>
+            <tr>
+              氏名：<%= hoge.uname %>年
+              <%= hoge.data.year %>年
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>

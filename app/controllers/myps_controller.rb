@@ -56,23 +56,16 @@ class MypsController < ApplicationController
   end
 
   def apply_store
+    @myps = Myp.all
     @myp = Myp.find_by(mypid:current_user.id)
     hoge = params[:inst_id]
-    binding.pry
     unless @myp.applyid == 0
       redirect_to myps_path, notice:"すでに物件を申し込んでいます, 自身でキャンセルするかオーナ様の不許可をお待ちください"  # 物件を申し込んでマイページの頭に飛ぶ
     else
-      if request.post? then
       @myp.applyid = hoge
-      binding.pry
       @myp.permission = 1 # 許可待ち状態へ
-      #@inst= Inst.find(params[:inst_id])
-      # params[:date_hoge]
-      # params[:starttime_hoge]
-      # params[:endtime_hoge]
       @myp.save
-      redirect_to myps_path, notice:"物件に申し込みました、オーナ様の許可をお待ちください" # 物件を申し込んでマイページの頭に飛ぶ
-      end
+      # redirect_to myps_path, notice:"物件に申し込みました、オーナ様の許可をお待ちください" # 物件を申し込んでマイページの頭に飛ぶ
     end
   end
 
@@ -91,7 +84,7 @@ class MypsController < ApplicationController
 
   private
     def myps_params
-      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :mypid, :applyid, :avatar, :uemail)
+      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :mypid, :applyid, :avatar, :uemail, :data, :endtime, :starttime)
     end
 
     def set_myp

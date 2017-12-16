@@ -24,6 +24,7 @@
           <% else %>
             <% unless @myp.applyid == 0 %>
               <h4>現在物件を申込み済みです</h4>
+              <%= link_to "キャンセル", cancel_store_myp_path(id: current_user.id), class: 'btn btn-danger btn-sm' %><br>
             <% else %>
             <th><%= link_to "この物件に申込む", apply_store_myp_path(inst_id: @inst.id), class: 'btn btn-primary btn-sm' %></th>
             <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214132405) do
+ActiveRecord::Schema.define(version: 20171216025611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171214132405) do
     t.string   "image2"
     t.string   "image3"
     t.string   "image4"
+    t.time     "endtime"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -78,7 +79,9 @@ ActiveRecord::Schema.define(version: 20171214132405) do
     t.integer  "permission"
     t.string   "uemail"
     t.string   "avatar"
-    t.datetime "data"
+    t.date     "data"
+    t.time     "starttime"
+    t.time     "endtime"
   end
 
   create_table "relationships", force: :cascade do |t|

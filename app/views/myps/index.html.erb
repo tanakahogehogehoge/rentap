@@ -4,14 +4,23 @@
   <div class="row">
     <div class="col-xs-offset-1 col-xs-10 col-xs-offset-1 col-sm-offset-1 col-sm-10 col-sm-offset-1">
       <br><br><br>
+
         <h1><%= @myp.uname %>様のマイページ</h1>
         <% unless @myp.applyid == 0 %>
           <table class="table table-striped">
             <left><h4>現在応募している物件</h4></left>
+            <tr>
+              <th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th>
+            </tr>
 
-            <tr><th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th></tr>
-            <tr><th><%= @myp.applyid %></th><th><%= Inst.find_by(id:@myp.applyid).style %></th><th><%= Inst.find_by(id:@myp.applyid).cost %></th><th><%= Inst.find_by(id:@myp.applyid).address %></th>
-            <th><%= link_to "物件の詳細", inst_path(id:@myp.applyid), class: 'btn btn-primary btn-sm' %></th>
+            <tr>
+              <th><%= @myp.applyid %></th><th><%= Inst.find_by(id:@myp.applyid).style %></th><th><%= Inst.find_by(id:@myp.applyid).cost %></th><th><%= Inst.find_by(id:@myp.applyid).address %></th>
+            </tr>
+
+            <tr>
+              <th>利用する日時：<%= @myp.data.year %>年<%= @myp.data.month %>月<%= @myp.data.day %>日</th>
+              <th><%= @myp.starttime.hour %>時<%= @myp.starttime.min %>分～<%= @myp.endtime.hour %>時<%= @myp.endtime.min %>分</th>
+              <th><%= link_to "物件の詳細", inst_path(id:@myp.applyid), class: 'btn btn-primary btn-sm' %></th>
               <th><%= link_to "キャンセル", cancel_store_myp_path(id:@myp.mypid), class: 'btn btn-danger btn-sm' %></th>
             </tr>
             </table>
