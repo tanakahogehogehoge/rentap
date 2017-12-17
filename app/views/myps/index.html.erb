@@ -9,6 +9,15 @@
         <% unless @myp.applyid == 0 %>
           <table class="table table-striped">
             <left><h4>現在応募している物件</h4></left>
+
+            <tr>
+              <% if @myp.permission == 2 %>
+                <th><h3><span class="label label-primary">許可</span></h3></th>
+              <% elsif @myp.permission == 1 %>
+                <th><h3><span class="label label-default">許可待ち</span></h3></th>
+              <% end %>
+            </tr>
+
             <tr>
               <th>物件番号</th><th>業態</th><th>レンタル料（円/1時間)</th><th>物件住所</th>
             </tr>
@@ -18,12 +27,17 @@
             </tr>
 
             <tr>
-              <th>利用する日時：<%= @myp.data.year %>年<%= @myp.data.month %>月<%= @myp.data.day %>日</th>
-              <th><%= @myp.starttime.hour %>時<%= @myp.starttime.min %>分～<%= @myp.endtime.hour %>時<%= @myp.endtime.min %>分</th>
+              <th></th>
               <th><%= link_to "物件の詳細", inst_path(id:@myp.applyid), class: 'btn btn-primary btn-sm' %></th>
               <th><%= link_to "キャンセル", cancel_store_myp_path(id:@myp.mypid), class: 'btn btn-danger btn-sm' %></th>
+              <% unless @myp.data == nil ||  @myp.starttime == nil ||  @myp.endtime == nil%>
+                <th>利用する日時：<%= @myp.data.year %>年<%= @myp.data.month %>月<%= @myp.data.day %>日
+                <%= @myp.starttime.hour %>時<%= @myp.starttime.min %>分～<%= @myp.endtime.hour %>時<%= @myp.endtime.min %>分</th>
+              <% else %>
+                <h3><font color = "red">応募した物件の日付の指定に不備がありました、応募した物件をキャンセルして再度応募してください</font></h3>
+              <% end %>
             </tr>
-            </table>
+          </table>
         <% else %>
           <h4>現在応募している物件はありません</h4>
         <% end %>
@@ -38,23 +52,23 @@
                 [物件住所：<%= inst.address %>]
               </div>
 
-            <div class="panel-body">
-              物件詳細<br><%= inst.info %><br><br>
-              物件写真<br><%= image_tag(inst.image) %>
-            </div>
+              <div class="panel-body">
+                物件詳細<br><%= inst.info %><br><br>
+                物件写真<br><%= image_tag(inst.image) %>
+              </div>
 
-            <div class="panel-footer">
-              レンタル料金:<%= inst.cost %>円/１時間
-              <% @myps.each do |hoge| %>
-                <% if inst.id == hoge.applyid %>
-                  <%= link_to "物件の申込者一覧へ", apply_user_inst_path(hoge.applyid), class: 'btn btn-danger btn-sm' %>
-                 <% break %>
+              <div class="panel-footer">
+                レンタル料金:<%= inst.cost %>円/１時間
+                <% @myps.each do |hoge| %>
+                  <% if inst.id == hoge.applyid %>
+                    <%= link_to "物件の申込者一覧へ", apply_user_inst_path(hoge.applyid), class: 'btn btn-danger btn-sm' %>
+                   <% break %>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
   </div>
 </div>

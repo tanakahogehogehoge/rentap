@@ -10,8 +10,12 @@
           <div class="panel panel-default">
             <div class="panel-heading">
             <% if myp.permission == 1 %>
-              <%= link_to "許可", permit_inst_path(myp.mypid), class: 'btn btn-primary btn-sm' %>
-              <%= link_to "不許可", deny_inst_path(myp.mypid), class: 'btn btn-danger btn-sm' %><br>
+              <% unless myp.data == nil ||  myp.starttime == nil ||  myp.endtime == nil %>
+                <%= link_to "許可", permit_inst_path(myp.mypid), class: 'btn btn-primary btn-sm' %>
+                <%= link_to "不許可", deny_inst_path(myp.mypid), class: 'btn btn-danger btn-sm' %><br>
+              <% else %>
+                <h3><font color = "red">応募したユーザ様の日付の指定に不備があり許可・不許可の処理ができません。応募したユーザ様のキャンセルをお待ちください</font></h3>
+              <% end %>
             <% end %>
 
             <h3>[ユーザID:<%= myp.mypid%>]<%= myp.uname %> 様の登録情報 &nbsp; &nbsp; <%= image_tag myp.avatar_url %></h3>
@@ -21,8 +25,16 @@
               <h4>住所：<%= myp.uaddress %></h4><br>
               <h4>銀行口座：<%= myp.ubankaccount %></h4><br>
               <h4>メールアドレス：<%= myp.uemail %></h4><br>
-              <h4><%= myp.uname %> 様が物件を利用する日時：</h4><br><h3><font color = "blue"><%= myp.data.year %>年<%= myp.data.month %>月<%= myp.data.day %>日
-              <%= myp.starttime.hour %>時<%= myp.starttime.min %>分～<%= myp.endtime.hour %>時<%= myp.endtime.min %>分</font></h3>
+              <% unless myp.data == nil %>
+                <% unless myp.starttime == nil %>
+                  <% unless myp.endtime == nil %>
+                    <% if myp.permission == 1 %>
+                      <h4><%= myp.uname %> 様が物件を利用する日時：</h4><br><h3><font color = "blue"><%= myp.data.year %>年<%= myp.data.month %>月<%= myp.data.day %>日
+                      <%= myp.starttime.hour %>時<%= myp.starttime.min %>分～<%= myp.endtime.hour %>時<%= myp.endtime.min %>分</font></h3>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
             </div>
 
             <div class="panel-footer">

@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     end
     collection do
       post :confirm
-      post :confirm2
     end
   end
 

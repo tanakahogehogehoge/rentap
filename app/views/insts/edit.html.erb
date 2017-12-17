@@ -7,9 +7,14 @@
           <h3> 店舗またはスペースの住所 </h3>
           <%= f.text_field :address, class: 'form-control' %>
           <br>
+
           <h3> 店舗またはスペース情報</h3>
           <%= f.text_area :info,  :size=>"90x10" %>
           <br>
+
+          <h3>店舗またはスペースの業態</h3>
+          <%= f.text_field :style, class: 'form-control' %>
+
           <h3> 店舗またはスペースの画像</h3>
           <center><%= f.file_field :image %></center>
           <%= f.hidden_field :image_cache %>

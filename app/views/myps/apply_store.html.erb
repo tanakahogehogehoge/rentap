@@ -7,15 +7,20 @@
         利用終了時間：<%= f.time_field :endtime %><br>
         <%= f.submit '登録', class: 'btn btn-primary btn-sm' %> &nbsp;&nbsp;
       <% end %>
-      <%= link_to "キャンセル", cancel_store_myp_path(id: current_user.id), class: 'btn btn-danger btn-sm' %><br>
       <br><br>
-      <h2>本物件ですでに予約されている日時一覧</h2>
+      <h4>本物件ですでに予約されている日時一覧</h4>
       <% @myps.each do |hoge| %>
         <table class="table table-striped">
-          <% if @myp.applyid == hoge.applyid %>
+          <% if @myp.applyid == hoge.applyid && hoge.permission == 2 %>
             <tr>
-              氏名：<%= hoge.uname %>年
-              <%= hoge.data.year %>年
+              <% unless hoge.data == nil %>
+                <% unless hoge.starttime == nil %>
+                  <% unless hoge.endtime == nil %>
+                    <th><h4><%= hoge.uname %> さん：</h4><h4><font color = "blue"><%= hoge.data.year %>年<%= hoge.data.month %>月<%= hoge.data.day %>日
+                    <%= hoge.starttime.hour %>時<%= hoge.starttime.min %>分～<%= hoge.endtime.hour %>時<%= hoge.endtime.min %>分</font></h4></th>
+                  <% end %>
+                <% end %>
+              <% end %>
             </tr>
           <% end %>
         </table>
