@@ -84,7 +84,7 @@ class MypsController < ApplicationController
 
   private
     def myps_params
-      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :mypid, :applyid, :avatar, :uemail, :data, :endtime, :starttime)
+      params.require(:myp).permit(:uname, :uaddress, :ubankaccount, :uemail, :mypid, :applyid, :avatar, :uemail, :data, :endtime, :starttime)
     end
 
     def set_myp
